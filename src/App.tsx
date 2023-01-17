@@ -5,7 +5,7 @@ import { RandomQuote } from './components/RandomQuote'
 import { SearchBar } from './components/SearchBar';
 import { TitleBanner } from './components/TitleBanner';
 
-function App(props: any) {
+function App() {
 /*   const [count, setCount] = useState(0)
 
   return (
@@ -34,17 +34,14 @@ function App(props: any) {
     </div>
   )
  */
-  const [randomQuote, setRandomQuote] = useState("");
-  setRandomQuote(props.randomQuote);
 
-    return (
-      <div>
-        < TitleBanner />
-        < SearchBar />
-        <p>{randomQuote}</p>
-        {/*< RandomQuote />*/}
-      </div>
-    );
+  return (
+    <div>
+      < TitleBanner />
+      < SearchBar />
+      < RandomQuote />
+    </div>
+  );
 }
 
 export default App;
