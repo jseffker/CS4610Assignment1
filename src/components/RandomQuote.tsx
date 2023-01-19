@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 async function doThis() {
     const result = await fetch("https://api.quotable.io/random");
@@ -9,13 +9,16 @@ async function doThis() {
 
 export const RandomQuote = function() {
     const [randomQuote, setRandomQuote] = useState("");
-    doThis().then(response => {
-        console.log("Hi "+ Object.keys(response));
-        setRandomQuote(response.content);
-    });
+    const [quoteAuthor, setQuoteAuthor] = useState("");
+    useEffect(() => {
+        doThis().then(response => {
+            console.log("Hi "+ Object.keys(response));
+            setRandomQuote(response.content);
+            setQuoteAuthor(response.author);
+        });
+    }, []);
 
     return (
-        //<p>Random quote placeholder</p>
-        <p>{randomQuote}</p>
+        <p>{randomQuote} - {quoteAuthor}</p>
     );
 }
