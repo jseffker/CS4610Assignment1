@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 async function doThis() {
-    const result = await fetch("https://api.quotable.io/random");
+    const result = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
     //console.log(await result.json());
     let quote = await result.json();
     return quote;

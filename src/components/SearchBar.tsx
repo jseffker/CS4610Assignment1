@@ -1,9 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react'
 
-async function getQuotes(){
-    //const result = await fetch("https://api.quotable.io/search/quotes?query=George&fields=author");
-    const result = await fetch("https://quotable.io/quotes?author=albert-einstein");
-    //console.log(await result.json());
+async function getQuotes(searchTerm: string){
+    const result = await fetch(`https://usu-quotes-mimic.vercel.app/api/search?query=${searchTerm}`);
     let quotes = await result.json();
     return quotes;
 
@@ -11,26 +9,44 @@ async function getQuotes(){
 
 interface Quote {
     author: string;
-    quote: string;
+    content: string;
 }
 
-
 export const SearchBar = function() {
+    const [searchTerm, setSearchTerm] = useState("");
     const [quoteList, setQuoteList] = useState<Quote[]>([]);
     const search = async function(event: FormEvent) {
         event.preventDefault()
-        getQuotes().then(response => {
-            console.log("Hi "+ Object.keys(response));
+        setQuoteList([]);
+        getQuotes(searchTerm).then(response => {
+            let tempQuoteList: Quote[] = [];
+            setQuoteList(response.results);
             for (const item of response.results)
             {
-                console.log("Hi "+ item.content);
+                let tempQuote: Quote = {author:"", content:""};
+                tempQuoteList.push(tempQuote)
+                console.log(item.content);
             }
         });
     }
     
     return (
-        <form onSubmit={search}>
-            <input type="text" placeholder="Albert Einstein" />
-        </form>
+        <div>
+            <form onSubmit={search}>
+                <input
+                    type="text"
+                    placeholder="Albert Einstein"
+                    onChange={e => setSearchTerm(e.target.value)}
+                />
+            </form>
+            {quoteList.map((quote, index) => (
+                //index value should be fine here because I'm clearing the list after each edit
+                <p
+                    key={index}
+                    className="quote-list-item">
+                        {quote.content} - {quote.author}
+                </p>
+            ))}
+        </div>
     );
 }
