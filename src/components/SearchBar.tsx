@@ -12,7 +12,11 @@ interface Quote {
     content: string;
 }
 
-export const SearchBar = function() {
+interface SearchBarProps {
+    setListDisplayed: any;
+}
+
+export const SearchBar = function({setListDisplayed}: SearchBarProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [quoteList, setQuoteList] = useState<Quote[]>([]);
     const search = async function(event: FormEvent) {
@@ -28,6 +32,10 @@ export const SearchBar = function() {
                 console.log(item.content);
             }
         });
+    }
+
+    if (quoteList.length > 0){
+        setListDisplayed(true);
     }
     
     return (

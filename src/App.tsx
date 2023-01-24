@@ -11,8 +11,8 @@ function App() {
   return (
     <div>
       < TitleBanner />
-      < SearchBar />
-      < RandomQuote />
+      < SearchBar setListDisplayed={setListDisplayed} />
+      {!listDisplayed && < RandomQuote />}
     </div>
   );
 }
