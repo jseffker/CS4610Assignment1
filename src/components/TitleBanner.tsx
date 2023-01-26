@@ -1,6 +1,10 @@
 
-export const TitleBanner = function() {
+interface TitleBannerProps {
+    listDisplayed: boolean;
+}
+
+export const TitleBanner = function({listDisplayed}: TitleBannerProps) {
     return (
-        <h1>Quote Search</h1>
+        <h1 className={listDisplayed ? "title-banner-list-displayed" : "title-banner"}>Quote Search</h1>
     );
 }

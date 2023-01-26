@@ -19,6 +19,6 @@ export const RandomQuote = function() {
     }, []);
 
     return (
-        <p>{randomQuote} - {quoteAuthor}</p>
+        <p className='random-quote'>{randomQuote}<br/><i>- {quoteAuthor}</i></p>
     );
 }

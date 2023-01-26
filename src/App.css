@@ -40,7 +40,29 @@
   color: #888;
 }
 
+.title-banner {
+  padding: 8px;
+  border: 3px solid rgb(187, 197, 93);
+  border-radius: 10px;
+}
+
+.random-quote {
+  padding: 3px;
+  border: 3px solid rgb(104, 104, 150);
+  border-radius: 10px;
+}
+
 .quote-list-item {
-  background-color: red;
-  border-radius: 15%;
+  padding: 3px;
+  border: 3px solid rgb(187, 96, 96);
+  border-radius: 10px;
+}
+
+.title-banner-list-displayed {
+  place-items: none;
+  font-size: 1em;
+}
+
+.search-bar-list-displayed {
+  place-items: none;
 }

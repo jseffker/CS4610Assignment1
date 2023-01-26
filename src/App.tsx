@@ -10,8 +10,8 @@ function App() {
 
   return (
     <div>
-      < TitleBanner />
-      < SearchBar setListDisplayed={setListDisplayed} />
+      < TitleBanner listDisplayed={listDisplayed} />
+      < SearchBar listDisplayed={listDisplayed} setListDisplayed={setListDisplayed} />
       {!listDisplayed && < RandomQuote />}
     </div>
   );

@@ -13,10 +13,11 @@ interface Quote {
 }
 
 interface SearchBarProps {
+    listDisplayed: boolean;
     setListDisplayed: any;
 }
 
-export const SearchBar = function({setListDisplayed}: SearchBarProps) {
+export const SearchBar = function({listDisplayed, setListDisplayed}: SearchBarProps) {
     const [searchTerm, setSearchTerm] = useState("");
     const [quoteList, setQuoteList] = useState<Quote[]>([]);
     const search = async function(event: FormEvent) {
@@ -40,7 +41,7 @@ export const SearchBar = function({setListDisplayed}: SearchBarProps) {
     
     return (
         <div>
-            <form onSubmit={search}>
+            <form className={listDisplayed ? "search-bar-list-displayed" : ""} onSubmit={search}>
                 <input
                     type="text"
                     placeholder="Albert Einstein"
@@ -52,7 +53,7 @@ export const SearchBar = function({setListDisplayed}: SearchBarProps) {
                 <p
                     key={index}
                     className="quote-list-item">
-                        {quote.content} - {quote.author}
+                        {quote.content}<br/><i>- {quote.author}</i>
                 </p>
             ))}
         </div>
